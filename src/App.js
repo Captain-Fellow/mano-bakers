@@ -114,22 +114,22 @@ const ManoBakersApp = () => {
 
   const Header = () => (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-black/95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
+      isScrolled ? 'bg-black-95 backdrop-blur-sm shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center space-x-2">
             <ChefHat className="text-amber-300 w-8 h-8" />
-            <h1 className="text-2xl md:text-3xl font-serif text-white font-bold tracking-wide">
+            <h1 className="text-2xl md-text-3xl font-serif text-white font-bold tracking-wide">
               Mano Bakers
             </h1>
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden md-flex items-center space-x-8">
             <button
               onClick={() => setCurrentView('home')}
-              className={`text-white hover:text-amber-300 transition-colors font-medium ${
+              className={`text-white hover-text-amber-300 transition-colors font-medium ${
                 currentView === 'home' ? 'text-amber-300' : ''
               }`}
             >
@@ -137,7 +137,7 @@ const ManoBakersApp = () => {
             </button>
             <button
               onClick={() => setCurrentView('about')}
-              className={`text-white hover:text-amber-300 transition-colors font-medium ${
+              className={`text-white hover-text-amber-300 transition-colors font-medium ${
                 currentView === 'about' ? 'text-amber-300' : ''
               }`}
             >
@@ -145,7 +145,7 @@ const ManoBakersApp = () => {
             </button>
             <button
               onClick={() => setCurrentView('menu')}
-              className={`text-white hover:text-amber-300 transition-colors font-medium ${
+              className={`text-white hover-text-amber-300 transition-colors font-medium ${
                 currentView === 'menu' ? 'text-amber-300' : ''
               }`}
             >
@@ -153,7 +153,7 @@ const ManoBakersApp = () => {
             </button>
             <button
               onClick={() => setCurrentView('contact')}
-              className={`text-white hover:text-amber-300 transition-colors font-medium ${
+              className={`text-white hover-text-amber-300 transition-colors font-medium ${
                 currentView === 'contact' ? 'text-amber-300' : ''
               }`}
             >
@@ -165,11 +165,11 @@ const ManoBakersApp = () => {
           <div className="flex items-center space-x-4">
             <button
               onClick={() => setCurrentView('cart')}
-              className="relative text-white hover:text-amber-300 transition-colors"
+              className="relative text-white hover-text-amber-300 transition-colors"
             >
               <ShoppingCart className="w-6 h-6" />
               {getTotalItems() > 0 && (
-                <span className="absolute -top-2 -right-2 bg-rose-400 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
+                <span className="absolute negative-top-2 negative-right-2 bg-rose-400 text-white text-xs rounded-full w-5 h-5 flex items-center justify-center font-medium">
                   {getTotalItems()}
                 </span>
               )}
@@ -177,7 +177,7 @@ const ManoBakersApp = () => {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden text-white hover:text-amber-300 transition-colors"
+              className="md-hidden text-white hover-text-amber-300 transition-colors"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
@@ -186,14 +186,14 @@ const ManoBakersApp = () => {
 
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
-          <nav className="md:hidden mt-4 py-4 border-t border-gray-700">
+          <nav className="md-hidden mt-4 py-4 border-t border-gray-700">
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => {
                   setCurrentView('home');
                   setMobileMenuOpen(false);
                 }}
-                className="text-white hover:text-amber-300 transition-colors text-left font-medium"
+                className="text-white hover-text-amber-300 transition-colors text-left font-medium"
               >
                 Home
               </button>
@@ -202,7 +202,7 @@ const ManoBakersApp = () => {
                   setCurrentView('about');
                   setMobileMenuOpen(false);
                 }}
-                className="text-white hover:text-amber-300 transition-colors text-left font-medium"
+                className="text-white hover-text-amber-300 transition-colors text-left font-medium"
               >
                 About
               </button>
@@ -211,7 +211,7 @@ const ManoBakersApp = () => {
                   setCurrentView('menu');
                   setMobileMenuOpen(false);
                 }}
-                className="text-white hover:text-amber-300 transition-colors text-left font-medium"
+                className="text-white hover-text-amber-300 transition-colors text-left font-medium"
               >
                 Menu
               </button>
@@ -220,7 +220,7 @@ const ManoBakersApp = () => {
                   setCurrentView('contact');
                   setMobileMenuOpen(false);
                 }}
-                className="text-white hover:text-amber-300 transition-colors text-left font-medium"
+                className="text-white hover-text-amber-300 transition-colors text-left font-medium"
               >
                 Contact
               </button>
@@ -241,20 +241,20 @@ const ManoBakersApp = () => {
             backgroundImage: "url('https://images.unsplash.com/photo-1486427944299-d1955d23e34d?w=1920&h=1080&fit=crop')",
           }}
         >
-          <div className="absolute inset-0 bg-black/70"></div>
+          <div className="absolute inset-0 bg-black-70"></div>
         </div>
         
         <div className="relative z-10 text-center max-w-4xl mx-auto px-4">
-          <h2 className="text-5xl md:text-7xl font-serif mb-6 text-white leading-tight">
+          <h2 className="text-5xl md-text-7xl font-serif mb-6 text-white leading-tight">
             Artisan Baked
             <span className="text-amber-300 block">Delights</span>
           </h2>
-          <p className="text-xl md:text-2xl text-gray-200 mb-8 leading-relaxed">
+          <p className="text-xl md-text-2xl text-gray-200 mb-8 leading-relaxed">
             Where tradition meets innovation in every bite
           </p>
           <button
             onClick={() => setCurrentView('menu')}
-            className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-4 rounded-full text-lg font-semibold hover:from-amber-300 hover:to-orange-300 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
+            className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-4 rounded-full text-lg font-semibold hover-scale-105 transition-all duration-300 shadow-lg hover-shadow-xl"
           >
             View Our Menu
           </button>
@@ -265,9 +265,9 @@ const ManoBakersApp = () => {
       <section className="py-20 bg-gray-900">
         <div className="container mx-auto px-4">
           <h3 className="text-4xl font-serif text-center mb-16 text-white">Why Choose Mano Bakers?</h3>
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md-grid-cols-3 gap-8">
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-amber-400 to-orange-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-amber-400 to-orange-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover-scale-110 transition-transform duration-300">
                 <ChefHat className="w-8 h-8 text-black" />
               </div>
               <h4 className="text-xl font-semibold mb-4 text-white">Artisan Quality</h4>
@@ -276,7 +276,7 @@ const ManoBakersApp = () => {
               </p>
             </div>
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-rose-400 to-pink-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-rose-400 to-pink-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover-scale-110 transition-transform duration-300">
                 <Clock className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-4 text-white">Fresh Daily</h4>
@@ -285,7 +285,7 @@ const ManoBakersApp = () => {
               </p>
             </div>
             <div className="text-center group">
-              <div className="bg-gradient-to-r from-purple-400 to-indigo-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+              <div className="bg-gradient-to-r from-purple-400 to-indigo-400 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-6 group-hover-scale-110 transition-transform duration-300">
                 <MapPin className="w-8 h-8 text-white" />
               </div>
               <h4 className="text-xl font-semibold mb-4 text-white">Local Favorite</h4>
@@ -313,7 +313,7 @@ const ManoBakersApp = () => {
               className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
                 activeCategory === category.id
                   ? 'bg-gradient-to-r from-amber-400 to-orange-400 text-black shadow-lg'
-                  : 'bg-gray-800 text-white hover:bg-gray-700'
+                  : 'bg-gray-800 text-white hover-bg-gray-700'
               }`}
             >
               {category.name}
@@ -322,26 +322,26 @@ const ManoBakersApp = () => {
         </div>
 
         {/* Menu Items */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+        <div className="grid sm-grid-cols-2 lg-grid-cols-3 xl-grid-cols-4 gap-6">
           {BAKERY_DATA.categories
             .find(cat => cat.id === activeCategory)
             ?.items.map((item) => (
             <div
               key={item.id}
-              className="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300 group"
+              className="bg-gray-900 rounded-2xl overflow-hidden shadow-xl hover-shadow-2xl hover-scale-105 transition-all duration-300 group"
             >
               <div className="relative">
                 <img
                   src={item.image}
                   alt={item.name}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-48 object-cover group-hover-scale-110 transition-transform duration-500"
                 />
                 <div className="absolute top-3 left-3">
-                  <span className="bg-black/80 text-amber-300 px-2 py-1 rounded text-xs font-mono">
+                  <span className="bg-black-80 text-amber-300 px-2 py-1 rounded text-xs font-mono">
                     {item.code}
                   </span>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black-50 to-transparent opacity-0 group-hover-opacity-100 transition-opacity duration-300"></div>
               </div>
               <div className="p-6">
                 <h3 className="text-xl font-semibold mb-2 text-white">{item.name}</h3>
@@ -350,7 +350,7 @@ const ManoBakersApp = () => {
                   <span className="text-2xl font-bold text-amber-300">Rs. {item.price.toLocaleString()}</span>
                   <button
                     onClick={() => addToCart(item)}
-                    className="bg-gradient-to-r from-rose-400 to-pink-400 text-white px-4 py-2 rounded-full font-medium hover:from-rose-300 hover:to-pink-300 transform hover:scale-105 transition-all duration-300 shadow-lg"
+                    className="bg-gradient-to-r from-rose-400 to-pink-400 text-white px-4 py-2 rounded-full font-medium hover-scale-105 transition-all duration-300 shadow-lg"
                   >
                     Add to Cart
                   </button>
@@ -374,7 +374,7 @@ const ManoBakersApp = () => {
             <p className="text-xl text-gray-400 mb-8">Your cart is empty</p>
             <button
               onClick={() => setCurrentView('menu')}
-              className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-3 rounded-full font-semibold hover:from-amber-300 hover:to-orange-300 transition-all duration-300"
+              className="bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-3 rounded-full font-semibold transition-all duration-300"
             >
               Browse Menu
             </button>
@@ -400,7 +400,7 @@ const ManoBakersApp = () => {
                         </div>
                         <button
                           onClick={() => removeFromCart(item.id)}
-                          className="text-red-400 hover:text-red-300 font-medium transition-colors ml-4"
+                          className="text-red-400 hover-text-red-300 font-medium transition-colors ml-4"
                         >
                           Remove
                         </button>
@@ -411,14 +411,14 @@ const ManoBakersApp = () => {
                           <div className="flex items-center space-x-3">
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity - 1)}
-                              className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white font-bold transition-colors"
+                              className="w-8 h-8 bg-gray-700 hover-bg-gray-600 rounded-full flex items-center justify-center text-white font-bold transition-colors"
                             >
                               -
                             </button>
                             <span className="text-white font-semibold w-8 text-center">{item.quantity}</span>
                             <button
                               onClick={() => updateQuantity(item.id, item.quantity + 1)}
-                              className="w-8 h-8 bg-gray-700 hover:bg-gray-600 rounded-full flex items-center justify-center text-white font-bold transition-colors"
+                              className="w-8 h-8 bg-gray-700 hover-bg-gray-600 rounded-full flex items-center justify-center text-white font-bold transition-colors"
                             >
                               +
                             </button>
@@ -445,7 +445,7 @@ const ManoBakersApp = () => {
               </div>
               <button
                 onClick={sendOrderToWhatsApp}
-                className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center justify-center space-x-2"
+                className="w-full bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full text-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2"
               >
                 <Phone className="w-6 h-6" />
                 <span>Send Order via WhatsApp</span>
@@ -466,7 +466,7 @@ const ManoBakersApp = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-serif text-center mb-12 text-white">About Mano Bakers</h2>
           
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
+          <div className="grid md-grid-cols-2 gap-12 items-center mb-16">
             <div>
               <img
                 src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&h=400&fit=crop"
@@ -491,7 +491,7 @@ const ManoBakersApp = () => {
           
           <div className="text-center">
             <h3 className="text-2xl font-semibold mb-8 text-amber-300">Our Values</h3>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid md-grid-cols-3 gap-8">
               <div className="bg-gray-900 rounded-2xl p-6">
                 <h4 className="text-xl font-semibold mb-4 text-white">Quality</h4>
                 <p className="text-gray-300">We never compromise on the quality of our ingredients or our baking process.</p>
@@ -517,7 +517,7 @@ const ManoBakersApp = () => {
         <div className="max-w-4xl mx-auto">
           <h2 className="text-4xl font-serif text-center mb-12 text-white">Contact Us</h2>
           
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="grid md-grid-cols-2 gap-12">
             <div>
               <h3 className="text-2xl font-semibold mb-8 text-amber-300">Get in Touch</h3>
               
@@ -552,7 +552,7 @@ const ManoBakersApp = () => {
               
               <button
                 onClick={openWhatsApp}
-                className="mt-8 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold hover:from-green-400 hover:to-green-500 transition-all duration-300 flex items-center space-x-2"
+                className="mt-8 bg-gradient-to-r from-green-500 to-green-600 text-white px-8 py-4 rounded-full font-semibold transition-all duration-300 flex items-center space-x-2"
               >
                 <Phone className="w-5 h-5" />
                 <span>Chat on WhatsApp</span>
@@ -566,7 +566,7 @@ const ManoBakersApp = () => {
                   <label className="block text-sm font-medium text-gray-300 mb-2">Name</label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white focus:border-amber-300 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white transition-colors"
                     placeholder="Your name"
                   />
                 </div>
@@ -574,7 +574,7 @@ const ManoBakersApp = () => {
                   <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white focus:border-amber-300 focus:outline-none transition-colors"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white transition-colors"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -582,14 +582,14 @@ const ManoBakersApp = () => {
                   <label className="block text-sm font-medium text-gray-300 mb-2">Message</label>
                   <textarea
                     rows={4}
-                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white focus:border-amber-300 focus:outline-none transition-colors resize-none"
+                    className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-xl text-white transition-colors resize-none"
                     placeholder="Tell us how we can help you..."
                   ></textarea>
                 </div>
                 <button
                   type="button"
                   onClick={openWhatsApp}
-                  className="w-full bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-3 rounded-xl font-semibold hover:from-amber-300 hover:to-orange-300 transition-all duration-300"
+                  className="w-full bg-gradient-to-r from-amber-400 to-orange-400 text-black px-8 py-3 rounded-xl font-semibold transition-all duration-300"
                 >
                   Send via WhatsApp
                 </button>
@@ -604,10 +604,10 @@ const ManoBakersApp = () => {
   const WhatsAppButton = () => (
     <button
       onClick={openWhatsApp}
-      className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover:from-green-400 hover:to-green-500 transform hover:scale-110 transition-all duration-300 z-50 group"
+      className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover-scale-110 transition-all duration-300 z-50 group"
     >
       <Phone className="w-6 h-6" />
-      <span className="absolute right-full mr-3 top-1/2 transform -translate-y-1/2 bg-black text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+      <span className="absolute right-full mr-3 top-1/2 transform translate-y-negative-half bg-black text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover-opacity-100 transition-opacity duration-300">
         Order via WhatsApp
       </span>
     </button>
