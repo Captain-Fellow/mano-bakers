@@ -5,7 +5,8 @@ export const BAKERY_DATA = {
   // 🏪 Business Information
   businessInfo: {
     name: "Mano Bakers",
-    whatsappLink: "https://wa.me/message/5U2VP7MILEM3P1?src=qr",
+    whatsappLink: "https://wa.me/94726067451",
+    phone: "94726067451",
     address: "123 Baker Street, Colombo 07, Sri Lanka",
     email: "hello@manobakers.me",
     hours: {
@@ -16,7 +17,8 @@ export const BAKERY_DATA = {
 
   // 📱 WhatsApp Settings
   whatsapp: {
-    link: "https://wa.me/message/5U2VP7MILEM3P1?src=qr",
+    phone: "94726067451",
+    link: "https://wa.me/94726067451",
     defaultMessage: "Hi Mano Bakers, I'd like to place an order. Can you help me?"
   },
 

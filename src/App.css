@@ -411,6 +411,160 @@ input, textarea {
   font-family: inherit;
 }
 
+/* Category Scrolling for Mobile */
+.category-scroll-container {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  padding-bottom: 8px;
+}
+
+.category-scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.category-scroll-wrapper {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  padding: 0 0.5rem;
+  width: max-content;
+  margin: 0 auto;
+}
+
+.category-button {
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Floating Buttons */
+.fixed-buttons-container {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  z-index: 50;
+}
+
+.fixed-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.5rem;
+  height: 3.5rem;
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease-in-out;
+  position: relative;
+}
+
+.fixed-button:hover {
+  transform: scale(1.05);
+}
+
+.whatsapp-button {
+  background: linear-gradient(to right, #25D366, #128C7E);
+  color: white;
+}
+
+.cart-button {
+  background: linear-gradient(to right, #f87171, #fb7185);
+  color: white;
+}
+
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #000;
+  color: white;
+  font-size: 0.75rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+}
+
+.button-tooltip {
+  position: absolute;
+  right: calc(100% + 0.75rem);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.fixed-button:hover .button-tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Cart Animation */
+@keyframes cartPulse {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+  50% {
+    transform: scale(1.15);
+    box-shadow: 0 0 20px rgba(251, 113, 133, 0.6);
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  }
+}
+
+.cart-pulse {
+  animation: cartPulse 1s ease-in-out;
+}
+
+/* Make grid responsive on all screen sizes */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 1rem;
+}
+
+@media (min-width: 576px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
 /* Mobile responsive adjustments */
 @media (max-width: 768px) {
   .hero-text {
@@ -422,7 +576,7 @@ input, textarea {
   }
   
   .container {
-    padding: 0 1.5rem;
+    padding: 0 1rem;
   }
 }
 

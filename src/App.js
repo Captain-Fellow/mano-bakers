@@ -56,6 +56,17 @@ const ManoBakersApp = () => {
     return cart.reduce((total, item) => total + (item.price * item.quantity), 0);
   };
 
+  // Generate a unique order number based on date, time and client info
+  const generateOrderNumber = () => {
+    const now = new Date();
+    const dateStr = now.toISOString().slice(0,10).replace(/-/g, '');
+    const timeStr = now.getHours().toString().padStart(2, '0') + 
+                    now.getMinutes().toString().padStart(2, '0');
+    // Create a hash from timestamp to simulate IP-based identifier
+    const randomPart = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+    return `MB-${dateStr}-${timeStr}-${randomPart}`;
+  };
+
   // 🛒 Generate WhatsApp Order Message
   const generateOrderMessage = () => {
     if (cart.length === 0) return '';
@@ -65,10 +76,12 @@ const ManoBakersApp = () => {
       hour: '2-digit', 
       minute: '2-digit' 
     });
+    const orderNumber = generateOrderNumber();
 
     let message = `🛒 *NEW ORDER - Mano Bakers*\n\n`;
     message += `📅 Date: ${orderDate}\n`;
-    message += `🕐 Time: ${orderTime}\n\n`;
+    message += `🕐 Time: ${orderTime}\n`;
+    message += `🔢 Order #: ${orderNumber}\n\n`;
     message += `📋 *Order Details:*\n`;
     message += `━━━━━━━━━━━━━━━━━━━━\n`;
 
@@ -101,15 +114,15 @@ const ManoBakersApp = () => {
     const orderMessage = generateOrderMessage();
     const encodedMessage = encodeURIComponent(orderMessage);
     
-    // Use the exact WhatsApp link provided
-    const whatsappURL = `${BAKERY_DATA.whatsapp.link}&text=${encodedMessage}`;
+    // Use direct WhatsApp API with phone number
+    const whatsappURL = `https://wa.me/${BAKERY_DATA.whatsapp.phone}?text=${encodedMessage}`;
     
     window.open(whatsappURL, '_blank');
   };
 
   // 📱 General WhatsApp Contact
   const openWhatsApp = () => {
-    window.open(BAKERY_DATA.whatsapp.link, '_blank');
+    window.open(`https://wa.me/${BAKERY_DATA.whatsapp.phone}`, '_blank');
   };
 
   const Header = () => (
@@ -304,25 +317,27 @@ const ManoBakersApp = () => {
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-4xl font-serif text-center mb-12 text-white">Our Delicious Menu</h2>
         
-        {/* Category Navigation */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
-          {BAKERY_DATA.categories.map((category) => (
-            <button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              className={`px-6 py-3 rounded-full font-medium transition-all duration-300 ${
-                activeCategory === category.id
-                  ? 'bg-gradient-to-r from-amber-400 to-orange-400 text-black shadow-lg'
-                  : 'bg-gray-800 text-white hover-bg-gray-700'
-              }`}
-            >
-              {category.name}
-            </button>
-          ))}
+        {/* Category Navigation - Made Scrollable for Mobile */}
+        <div className="category-scroll-container mb-12">
+          <div className="category-scroll-wrapper">
+            {BAKERY_DATA.categories.map((category) => (
+              <button
+                key={category.id}
+                onClick={() => setActiveCategory(category.id)}
+                className={`category-button px-4 py-2 rounded-full font-medium transition-all duration-300 ${
+                  activeCategory === category.id
+                    ? 'bg-gradient-to-r from-amber-400 to-orange-400 text-black shadow-lg'
+                    : 'bg-gray-800 text-white hover-bg-gray-700'
+                }`}
+              >
+                {category.name}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* Menu Items */}
-        <div className="grid sm-grid-cols-2 lg-grid-cols-3 xl-grid-cols-4 gap-6">
+        {/* Menu Items - Responsive Grid */}
+        <div className="grid grid-cols-1 sm-grid-cols-2 lg-grid-cols-3 xl-grid-cols-4 gap-6">
           {BAKERY_DATA.categories
             .find(cat => cat.id === activeCategory)
             ?.items.map((item) => (
@@ -349,7 +364,15 @@ const ManoBakersApp = () => {
                 <div className="flex items-center justify-between">
                   <span className="text-2xl font-bold text-amber-300">Rs. {item.price.toLocaleString()}</span>
                   <button
-                    onClick={() => addToCart(item)}
+                    onClick={() => {
+                      addToCart(item);
+                      // Add animation class to cart button
+                      document.getElementById('floating-cart-button')?.classList.add('cart-pulse');
+                      // Remove animation class after animation completes
+                      setTimeout(() => {
+                        document.getElementById('floating-cart-button')?.classList.remove('cart-pulse');
+                      }, 1000);
+                    }}
                     className="bg-gradient-to-r from-rose-400 to-pink-400 text-white px-4 py-2 rounded-full font-medium hover-scale-105 transition-all duration-300 shadow-lg"
                   >
                     Add to Cart
@@ -601,16 +624,38 @@ const ManoBakersApp = () => {
     </div>
   );
 
-  const WhatsAppButton = () => (
-    <button
-      onClick={openWhatsApp}
-      className="fixed bottom-6 right-6 bg-gradient-to-r from-green-500 to-green-600 text-white p-4 rounded-full shadow-2xl hover-scale-110 transition-all duration-300 z-50 group"
-    >
-      <Phone className="w-6 h-6" />
-      <span className="absolute right-full mr-3 top-1/2 transform translate-y-negative-half bg-black text-white px-3 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover-opacity-100 transition-opacity duration-300">
-        Order via WhatsApp
-      </span>
-    </button>
+  const FloatingCartButton = () => (
+    <div className="fixed-buttons-container">
+      {/* WhatsApp Contact Button */}
+      <button
+        onClick={openWhatsApp}
+        className="fixed-button whatsapp-button"
+      >
+        <Phone className="w-6 h-6" />
+        <span className="button-tooltip">
+          Contact Us
+        </span>
+      </button>
+      
+      {/* Cart Button */}
+      <button
+        id="floating-cart-button"
+        onClick={() => setCurrentView('cart')}
+        className="fixed-button cart-button"
+      >
+        <div className="relative">
+          <ShoppingCart className="w-6 h-6" />
+          {getTotalItems() > 0 && (
+            <span className="cart-count">
+              {getTotalItems()}
+            </span>
+          )}
+        </div>
+        <span className="button-tooltip">
+          View Cart {getTotalItems() > 0 ? `(${getTotalItems()} items)` : ''}
+        </span>
+      </button>
+    </div>
   );
 
   const renderCurrentView = () => {
@@ -634,7 +679,7 @@ const ManoBakersApp = () => {
     <div className="min-h-screen bg-black">
       <Header />
       {renderCurrentView()}
-      <WhatsAppButton />
+      <FloatingCartButton />
     </div>
   );
 };
