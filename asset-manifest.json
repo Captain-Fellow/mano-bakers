@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/mano-bakers/static/css/main.b8a9ebd2.css",
-    "main.js": "/mano-bakers/static/js/main.05d1fd2f.js",
+    "main.css": "/mano-bakers/static/css/main.73d7290d.css",
+    "main.js": "/mano-bakers/static/js/main.31721ace.js",
     "static/js/453.7fe0e4fe.chunk.js": "/mano-bakers/static/js/453.7fe0e4fe.chunk.js",
     "index.html": "/mano-bakers/index.html",
-    "main.b8a9ebd2.css.map": "/mano-bakers/static/css/main.b8a9ebd2.css.map",
-    "main.05d1fd2f.js.map": "/mano-bakers/static/js/main.05d1fd2f.js.map",
+    "main.73d7290d.css.map": "/mano-bakers/static/css/main.73d7290d.css.map",
+    "main.31721ace.js.map": "/mano-bakers/static/js/main.31721ace.js.map",
     "453.7fe0e4fe.chunk.js.map": "/mano-bakers/static/js/453.7fe0e4fe.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.b8a9ebd2.css",
-    "static/js/main.05d1fd2f.js"
+    "static/css/main.73d7290d.css",
+    "static/js/main.31721ace.js"
   ]
 }
