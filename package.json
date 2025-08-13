@@ -1,7 +1,7 @@
 {
   "name": "mano-bakers",
   "version": "1.0.0",
-  "homepage": "http://manobakers.me/mano-bakers/",
+  "homepage": "https://manobakers.me",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",
