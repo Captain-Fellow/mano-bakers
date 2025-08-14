@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Menu, X, Phone, MapPin, Clock, ChefHat } from 'lucide-react';
 import BAKERY_DATA from './data/bakeryData';
 import './App.css';
@@ -58,19 +58,30 @@ const ManoBakersApp = () => {
     localStorage.setItem('manoBakersCart', JSON.stringify(cart));
   }, [cart]);
 
-  // Save all order details to localStorage with debouncing to prevent re-render issues
+  // Save order details to localStorage
   useEffect(() => {
-    const timeoutId = setTimeout(() => {
-      localStorage.setItem('manoBakersOrderType', orderType);
-      localStorage.setItem('manoBakersDeliveryAddress', deliveryAddress);
-      localStorage.setItem('manoBakersContactNumber', contactNumber);
-      localStorage.setItem('manoBakersPickupTime', pickupTime);
-      localStorage.setItem('manoBakersPickupDateTime', pickupDateTime);
-      localStorage.setItem('manoBakersSpecialNotes', specialNotes);
-    }, 100); // 100ms debounce
+    localStorage.setItem('manoBakersOrderType', orderType);
+  }, [orderType]);
 
-    return () => clearTimeout(timeoutId);
-  }, [orderType, deliveryAddress, contactNumber, pickupTime, pickupDateTime, specialNotes]);
+  useEffect(() => {
+    localStorage.setItem('manoBakersDeliveryAddress', deliveryAddress);
+  }, [deliveryAddress]);
+
+  useEffect(() => {
+    localStorage.setItem('manoBakersContactNumber', contactNumber);
+  }, [contactNumber]);
+
+  useEffect(() => {
+    localStorage.setItem('manoBakersPickupTime', pickupTime);
+  }, [pickupTime]);
+
+  useEffect(() => {
+    localStorage.setItem('manoBakersPickupDateTime', pickupDateTime);
+  }, [pickupDateTime]);
+
+  useEffect(() => {
+    localStorage.setItem('manoBakersSpecialNotes', specialNotes);
+  }, [specialNotes]);
 
   const addToCart = (item) => {
     setCart(prev => {
@@ -122,7 +133,7 @@ const ManoBakersApp = () => {
   };
 
   // Handle contact number input
-  const handleContactNumberChange = useCallback((value) => {
+  const handleContactNumberChange = (value) => {
     const cleaned = value.replace(/\D/g, ''); // Only allow digits
     if (cleaned.length <= 10) {
       setContactNumber(cleaned);
@@ -130,11 +141,9 @@ const ManoBakersApp = () => {
         setContactNumberError('');
       } else if (cleaned.length > 0) {
         setContactNumberError('*Type your mobile number correctly with 10 digits');
-      } else {
-        setContactNumberError('');
       }
     }
-  }, []);
+  };
 
   // Clear cart after successful order
   const clearCartAfterOrder = () => {
@@ -538,11 +547,7 @@ const ManoBakersApp = () => {
     </div>
   );
 
-  // NOTE: Previously this was declared as an inner React component (const CartPage = () => ...)
-  // Inside a parent component, redefining a component each render changes its identity -> React fully unmounts/remounts it on every parent render.
-  // That caused the form fields (delivery address, contact number, special notes) to lose focus after each keystroke.
-  // Converting it to a simple render function that returns JSX keeps the elements in the same reconciliation path, preserving focus.
-  const renderCartPage = () => (
+  const CartPage = () => (
     <div className="min-h-screen bg-black text-white pt-24">
       <div className="container mx-auto px-4 py-8">
         <h2 className="text-4xl font-serif text-center mb-12 text-white">Your Cart</h2>
@@ -927,7 +932,7 @@ const ManoBakersApp = () => {
       case 'menu':
         return <MenuPage />;
       case 'cart':
-        return renderCartPage();
+        return <CartPage />;
       case 'about':
         return <AboutPage />;
       case 'contact':
